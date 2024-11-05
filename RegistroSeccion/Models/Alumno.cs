@@ -19,7 +19,10 @@ namespace RegistroSeccion.Models
         [MaxLength(200)]
         public string Modalidad { get; set; }
 
-        public Asignacion Asignacion { get; set; }
+        [Required]
+        public Boolean Asistencia { get; set; }
+
+        public Asignacion? Asignacion { get; set; }
 
         [ForeignKey("Asignacion")]
         public int IdAsignacion { get; set; }

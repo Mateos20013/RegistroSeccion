@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.Modalidad)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Asistencia)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Asignacion)
             </th>
             <th></th>
@@ -40,7 +43,10 @@
                 @Html.DisplayFor(modelItem => item.Modalidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Asignacion.IdAsignacion)
+                @Html.DisplayFor(modelItem => item.Asistencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asignacion.Nombre)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdBanner">Edit</a> |

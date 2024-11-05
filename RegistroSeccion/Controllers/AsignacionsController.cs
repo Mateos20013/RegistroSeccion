@@ -22,8 +22,7 @@ namespace RegistroSeccion.Controllers
         // GET: Asignacions
         public async Task<IActionResult> Index()
         {
-            var registroSeccionContext = _context.Asignacion.Include(a => a.Carrera);
-            return View(await registroSeccionContext.ToListAsync());
+            return View(await _context.Asignacion.ToListAsync());
         }
 
         // GET: Asignacions/Details/5
@@ -35,7 +34,6 @@ namespace RegistroSeccion.Controllers
             }
 
             var asignacion = await _context.Asignacion
-                .Include(a => a.Carrera)
                 .FirstOrDefaultAsync(m => m.IdAsignacion == id);
             if (asignacion == null)
             {
@@ -48,7 +46,6 @@ namespace RegistroSeccion.Controllers
         // GET: Asignacions/Create
         public IActionResult Create()
         {
-            ViewData["IdCarrera"] = new SelectList(_context.Set<Carrera>(), "IdCarrera", "Nombre");
             return View();
         }
 
@@ -57,7 +54,7 @@ namespace RegistroSeccion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdAsignacion,Nombre,IdCarrera")] Asignacion asignacion)
+        public async Task<IActionResult> Create([Bind("IdAsignacion,Nombre")] Asignacion asignacion)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +62,6 @@ namespace RegistroSeccion.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCarrera"] = new SelectList(_context.Set<Carrera>(), "IdCarrera", "Nombre", asignacion.IdCarrera);
             return View(asignacion);
         }
 
@@ -82,7 +78,6 @@ namespace RegistroSeccion.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdCarrera"] = new SelectList(_context.Set<Carrera>(), "IdCarrera", "Nombre", asignacion.IdCarrera);
             return View(asignacion);
         }
 
@@ -91,7 +86,7 @@ namespace RegistroSeccion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdAsignacion,Nombre,IdCarrera")] Asignacion asignacion)
+        public async Task<IActionResult> Edit(int id, [Bind("IdAsignacion,Nombre")] Asignacion asignacion)
         {
             if (id != asignacion.IdAsignacion)
             {
@@ -118,7 +113,6 @@ namespace RegistroSeccion.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCarrera"] = new SelectList(_context.Set<Carrera>(), "IdCarrera", "Nombre", asignacion.IdCarrera);
             return View(asignacion);
         }
 
@@ -131,7 +125,6 @@ namespace RegistroSeccion.Controllers
             }
 
             var asignacion = await _context.Asignacion
-                .Include(a => a.Carrera)
                 .FirstOrDefaultAsync(m => m.IdAsignacion == id);
             if (asignacion == null)
             {

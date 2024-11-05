@@ -16,6 +16,6 @@ namespace RegistroSeccion.Data
 
         public DbSet<RegistroSeccion.Models.Alumno> Alumno { get; set; } = default!;
         public DbSet<RegistroSeccion.Models.Asignacion> Asignacion { get; set; } = default!;
-        public DbSet<RegistroSeccion.Models.Carrera> Carrera { get; set; } = default!;
+        
     }
 }

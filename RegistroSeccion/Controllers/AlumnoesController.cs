@@ -48,7 +48,7 @@ namespace RegistroSeccion.Controllers
         // GET: Alumnoes/Create
         public IActionResult Create()
         {
-            ViewData["IdAsignacion"] = new SelectList(_context.Set<Asignacion>(), "IdAsignacion", "IdAsignacion");
+            ViewData["IdAsignacion"] = new SelectList(_context.Asignacion, "IdAsignacion", "Nombre");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace RegistroSeccion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdBanner,nombre,Correo,Modalidad,IdAsignacion")] Alumno alumno)
+        public async Task<IActionResult> Create([Bind("IdBanner,nombre,Correo,Modalidad,Asistencia,IdAsignacion")] Alumno alumno)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace RegistroSeccion.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdAsignacion"] = new SelectList(_context.Set<Asignacion>(), "IdAsignacion", "IdAsignacion", alumno.IdAsignacion);
+            ViewData["IdAsignacion"] = new SelectList(_context.Asignacion, "IdAsignacion", "Nombre", alumno.IdAsignacion);
             return View(alumno);
         }
 
@@ -82,7 +82,7 @@ namespace RegistroSeccion.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdAsignacion"] = new SelectList(_context.Set<Asignacion>(), "IdAsignacion", "IdAsignacion", alumno.IdAsignacion);
+            ViewData["IdAsignacion"] = new SelectList(_context.Asignacion, "IdAsignacion", "Nombre", alumno.IdAsignacion);
             return View(alumno);
         }
 
@@ -91,7 +91,7 @@ namespace RegistroSeccion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("IdBanner,nombre,Correo,Modalidad,IdAsignacion")] Alumno alumno)
+        public async Task<IActionResult> Edit(string id, [Bind("IdBanner,nombre,Correo,Modalidad,Asistencia,IdAsignacion")] Alumno alumno)
         {
             if (id != alumno.IdBanner)
             {
@@ -118,7 +118,7 @@ namespace RegistroSeccion.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdAsignacion"] = new SelectList(_context.Set<Asignacion>(), "IdAsignacion", "IdAsignacion", alumno.IdAsignacion);
+            ViewData["IdAsignacion"] = new SelectList(_context.Asignacion, "IdAsignacion", "Nombre", alumno.IdAsignacion);
             return View(alumno);
         }
 

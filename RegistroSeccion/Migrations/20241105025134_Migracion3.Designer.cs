@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegistroSeccion.Data;
 
@@ -10,9 +11,11 @@ using RegistroSeccion.Data;
 namespace RegistroSeccion.Migrations
 {
     [DbContext(typeof(RegistroSeccionContext))]
-    partial class RegistroSeccionContextModelSnapshot : ModelSnapshot
+    [Migration("20241105025134_Migracion3")]
+    partial class Migracion3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

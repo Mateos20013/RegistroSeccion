@@ -13,10 +13,7 @@ namespace RegistroSeccion.Models
         public string Nombre { get; set; }
 
         
-        public Carrera Carrera { get; set; }
-
-        [ForeignKey("Carrera")]
-        public int IdCarrera { get; set; }
+       
 
     }
 }
